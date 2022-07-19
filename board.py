@@ -44,11 +44,47 @@ def playerTwoMove():
         print("Invalid entry! Please try again.")
         playerTwoMove()
 
-def print_board():
-    pass
 
 def check_victory():
-    pass
+    # Check rows for victory
+    for row in board:
+        if '_' not in row:
+            if len(set(row)) == 1:
+                return True
+
+    # Check columns for victory
+    if board[0][0] == board[1][0] == board[2][0] != '_':
+        return True
+    if board[1][0] == board[1][1] == board[2][1] != '_':
+        return True
+    if board[2][0] == board[2][1] == board[2][2] != '_':
+        return True
+
+    # Check diagonals for victory
+    if board[0][0] == board[1][1] == board[2][2] != '_':
+        return True
+    if board[0][2] == board[1][1] == board[2][0] != '_':
+        return True
+    else:
+        return False
+
 
 def check_tie():
-    pass
+    for row in board:
+        for i in row:
+            if i == '_':
+                return False
+    return True
+
+
+def print_board():
+    for i in board:
+        print(i)
+
+
+def main():
+    print_board()
+    playerOneMove()
+
+
+main()
